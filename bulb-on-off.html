@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bulb On Off</title>
+    <style>
+        body{
+            background-color: rgb(47, 47, 68);
+        }
+        .bulb-img {
+            height: 300px;
+            display: block;
+            margin: 100px auto 40px auto;
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
+            border: 2px solid #25282b;
+            border-radius: 3px;
+            padding: 6px 26px;
+            cursor: pointer;
+            background-color: #25282b;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: wheat;
+            color: #25282b;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="bulb-off.png" class="bulb-img" id="img-bulb">
+    <button type="button" onclick="togglebulb()">TOGGLE BULB</button>
+
+    <script>
+        let ver = true;
+        function togglebulb() {
+            const bulbElement = document.getElementById("img-bulb");
+
+            ver ? (bulbElement.src = "bulb-on.png") : (bulbElement.src = "bulb-off.png");
+
+            ver = !ver
+        }
+    </script>
+</body>
+
+</html>
