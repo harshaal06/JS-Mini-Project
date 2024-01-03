@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background: radial-gradient(circle at 27% 65%, rgba(13, 9, 100, 1) 30%, rgba(63, 81, 181, 1) 100%, rgba(203, 109, 127, 1) 100%);
+            font-family: "Gill Sans", sans-serif;
+        }
+        .main-box {
+            height: 540px;
+            width: 480px;
+            background: #fff;
+            margin: 70px auto;
+            border-radius: 15px;
+        }
+        .main-box h1 {
+            text-align: center;
+            padding: 10px;
+            border-bottom: 1px solid black;
+        }
+        .ser-box {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            margin: 0 25px;
+        }
+        .ser-box input {
+            width: 280px;
+            height: 20px;
+            border-radius: 25px;
+            border: none;
+            background: #d8d5d5;
+            padding: 15px;
+            font-size: 17px;
+        }
+        .ser-box button {
+            padding: 15px 40px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 15px;
+            background: rgb(243, 21, 62);
+        }
+        .task-box {
+            margin: 20px 25px;
+            border-top: 1px solid rgb(136, 135, 135);
+            height: 350px;
+            overflow-y: scroll;
+        }
+        .task {
+            border-bottom: 1px solid rgb(136, 135, 135);
+            height: 20px;
+            padding: 15px;
+            font-size: 17px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .task span {
+            cursor: pointer;
+            color: rgb(243, 21, 62);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-box">
+        <h1>To-Do List 🧾</h1>
+        <div class="ser-box">
+            <input type="text" placeholder="Add your task" id="inputVal">
+            <button type="button" onclick="addTask()">ADD</button>
+        </div>
+        <div class="task-box" id="task-box">
+        </div>
+    </div>
+    <script>
+        const toDoList = [];
+        const taskBox = document.getElementById("task-box");
+
+        function addTask(){
+            const inputData = document.getElementById("inputVal");
+            const task = inputData.value;
+
+            if(task){
+                toDoList.push(task);
+                inputData.value = "";
+                loadList();
+            }
+            else{
+                alert("Please enter task");
+            }
+        }
+
+        function loadList(){
+            taskBox.innerHTML = "";
+
+            for (let i = 0; i < toDoList.length; i++){
+                let value = toDoList[i];
+                taskBox.innerHTML = taskBox.innerHTML + `<div class="task">${value}<span onclick="removeTask(${i})">Remove</span></div>`;
+            }
+        }
+
+        function removeTask(index){
+            toDoList.splice(index,1);
+            loadList();
+        }
+    </script>
+</body>
+</html>
