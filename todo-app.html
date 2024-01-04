@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Todo List</title>
     <style>
@@ -8,9 +9,14 @@
             padding: 0;
             height: 100vh;
             background-repeat: no-repeat;
-            background: radial-gradient(circle at 27% 65%, rgba(13, 9, 100, 1) 30%, rgba(63, 81, 181, 1) 100%, rgba(203, 109, 127, 1) 100%);
+            background: hsla(0, 69%, 51%, 1);
+            background: linear-gradient(90deg, hsla(0, 69%, 51%, 1) 0%, hsla(277, 54%, 16%, 1) 100%);
+            background: -moz-linear-gradient(90deg, hsla(0, 69%, 51%, 1) 0%, hsla(277, 54%, 16%, 1) 100%);
+            background: -webkit-linear-gradient(90deg, hsla(0, 69%, 51%, 1) 0%, hsla(277, 54%, 16%, 1) 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#D82B2B", endColorstr="#2F1340", GradientType=1);
             font-family: "Gill Sans", sans-serif;
         }
+
         .main-box {
             height: 540px;
             width: 480px;
@@ -18,17 +24,20 @@
             margin: 70px auto;
             border-radius: 15px;
         }
+
         .main-box h1 {
             text-align: center;
             padding: 10px;
             border-bottom: 1px solid black;
         }
+
         .ser-box {
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
             margin: 0 25px;
         }
+
         .ser-box input {
             width: 280px;
             height: 20px;
@@ -38,6 +47,7 @@
             padding: 15px;
             font-size: 17px;
         }
+
         .ser-box button {
             padding: 15px 40px;
             border-radius: 25px;
@@ -45,14 +55,19 @@
             cursor: pointer;
             color: #fff;
             font-size: 15px;
-            background: rgb(243, 21, 62);
+            background: hsla(0, 69%, 51%, 1);
         }
+        .ser-box button:hover{
+            background: rgb(112, 21, 21);
+        }
+
         .task-box {
             margin: 20px 25px;
             border-top: 1px solid rgb(136, 135, 135);
             height: 350px;
             overflow-y: scroll;
         }
+
         .task {
             border-bottom: 1px solid rgb(136, 135, 135);
             height: 20px;
@@ -61,12 +76,17 @@
             display: flex;
             justify-content: space-between;
         }
+
         .task span {
             cursor: pointer;
             color: rgb(243, 21, 62);
         }
+        .task span:hover{
+            color: #000;
+        }
     </style>
 </head>
+
 <body>
     <div class="main-box">
         <h1>To-Do List 🧾</h1>
@@ -81,33 +101,34 @@
         const toDoList = [];
         const taskBox = document.getElementById("task-box");
 
-        function addTask(){
+        function addTask() {
             const inputData = document.getElementById("inputVal");
             const task = inputData.value;
 
-            if(task){
+            if (task) {
                 toDoList.push(task);
                 inputData.value = "";
                 loadList();
             }
-            else{
+            else {
                 alert("Please enter task");
             }
         }
 
-        function loadList(){
+        function loadList() {
             taskBox.innerHTML = "";
 
-            for (let i = 0; i < toDoList.length; i++){
+            for (let i = 0; i < toDoList.length; i++) {
                 let value = toDoList[i];
                 taskBox.innerHTML = taskBox.innerHTML + `<div class="task">${value}<span onclick="removeTask(${i})">Remove</span></div>`;
             }
         }
 
-        function removeTask(index){
-            toDoList.splice(index,1);
+        function removeTask(index) {
+            toDoList.splice(index, 1);
             loadList();
         }
     </script>
 </body>
+
 </html>
