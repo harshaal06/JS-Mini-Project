@@ -98,8 +98,14 @@
         </div>
     </div>
     <script>
-        const toDoList = [];
+        let toDoList = [];
         const taskBox = document.getElementById("task-box");
+
+        const todoItemsFromLS = localStorage.getItem("toDoList");
+        if(todoItemsFromLS){
+            toDoList = JSON.parse(todoItemsFromLS);
+            loadList();
+        }
 
         function addTask() {
             const inputData = document.getElementById("inputVal");
@@ -107,6 +113,7 @@
 
             if (task) {
                 toDoList.push(task);
+                localStorage.setItem("toDoList", JSON.stringify(toDoList));
                 inputData.value = "";
                 loadList();
             }
@@ -126,6 +133,7 @@
 
         function removeTask(index) {
             toDoList.splice(index, 1);
+            localStorage.setItem("toDoList", JSON.stringify(toDoList));
             loadList();
         }
     </script>
